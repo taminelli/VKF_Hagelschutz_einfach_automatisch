@@ -1,5 +1,7 @@
-# Visualisierung in HA
+# Information/Registration
+https://www.hagelschutz-einfach-automatisch.ch/eigentuemer-verwaltungen.html
 
+# Visualisierung in HA
 ![image](https://github.com/taminelli/VKF_Hagelschutz/assets/115330291/da2711d7-cb95-476d-9d8d-202778a25594)
 
 # Setup Automation "Hagelschutz - Warnung"
