@@ -1,0 +1,43 @@
+sensor:
+  - platform: rest
+    resource: URL_DER_API
+    name: Hagelschutz API
+    value_template: >-
+      {% if value_json.currentState == 0 %}
+        Keine Warnung
+      {% elif value_json.currentState == 1 %}
+        Warnung
+      {% elif value_json.currentState == 2 %}
+        Warnung (TEST)
+      {% else %}
+        Unbekannt
+      {% endif %}
+    json_attributes:
+      - newProgVer
+      - hailState
+    scan_interval: 120
+
+  - platform: template
+    sensors:
+      hagelschutz:
+        friendly_name: "Hagelschutz"
+        value_template: >-
+          {% if states('sensor.hagelschutz_api') == 'Keine Warnung' %}
+            Keine Warnung
+          {% elif states('sensor.hagelschutz_api') == 'Warnung' %}
+            Warnung
+          {% elif states('sensor.hagelschutz_api') == 'Warnung (TEST)' %}
+            Warnung (TEST)
+          {% else %}
+            Unbekannt
+          {% endif %}
+        icon_template: >-
+          {% if states('sensor.hagelschutz_api') == 'Keine Warnung' %}
+            mdi:check
+          {% elif states('sensor.hagelschutz_api') == 'Warnung' %}
+            mdi:weather-hail
+          {% elif states('sensor.hagelschutz_api') == 'Warnung (TEST)' %}
+            mdi:weather-hail
+          {% else %}
+            mdi:close-octagon
+          {% endif %}
